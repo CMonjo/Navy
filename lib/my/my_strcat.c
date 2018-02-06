@@ -2,23 +2,19 @@
 ** EPITECH PROJECT, 2017
 ** my_strcat
 ** File description:
-**
+** .c
 */
 #include <stdio.h>
 #include <stdlib.h>
-
-int	my_strlen(char const *str)
-{
-	int i = 0;
-
-	for (; str[i] != '\0'; i++);
-	return (i);
-}
+#include "my.h"
 
 char	*my_strcat(char *dest, char const *src)
 {
 	char *new = malloc(sizeof(char) *
-	(my_strlen(dest) + my_strlen(src + 1)));
+	(my_strlen(dest) + my_strlen(src) + 1));
+
+	if (!new)
+		exit(EXIT_FAILURE);
 	int i = 0;
 	int e = 0;
 
@@ -28,12 +24,9 @@ char	*my_strcat(char *dest, char const *src)
 			e++;
 		}
 	}
-	while (src[i] != '\0') {
-		if (src[i] != ' ') {
+	for (; src[i] != '\0'; i++) {
+		for (int j = 0; src[i] != ' ' && j == 0; j++, e++)
 			new[e] = src[i];
-			e++;
-		}
-		i++;
 	}
 	new[e] = '\0';
 	return (new);

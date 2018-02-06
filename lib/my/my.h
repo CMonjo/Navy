@@ -2,11 +2,15 @@
 ** EPITECH PROJECT, 2017
 ** my
 ** File description:
-**
+** c
 */
 
 #ifndef MY_H_
 #define MY_H_
+
+struct sokoban_t handling_character();
+
+char *fs_cat_x_bytes(char const *filepath, int x);
 
 void my_putchar(char c);
 
@@ -33,6 +37,8 @@ int my_is_prime(int nb);
 int my_find_prime_sup(int nb);
 
 char * my_strcpy(char *dest, char const *src);
+
+char **my_str_to_word_array();
 
 char *my_strncpy(char *dest, char const *src, int n);
 

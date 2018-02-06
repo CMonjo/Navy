@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2017
 ** c
 ** File description:
-** 
+** c
 */
 
 #include <unistd.h>
