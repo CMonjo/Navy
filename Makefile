@@ -11,7 +11,9 @@ CFLAGS	=	-Wall -Wextra -W -Werror -I include/
 
 LIB	=	-L lib/my -lmy
 
-SRC	=	main.c
+SRC	=	src/main.c \
+		src/game_handling/init.c \
+		src/display/display_rules.c
 
 OBJ	=	$(SRC:.c=.o)
 
