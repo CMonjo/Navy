@@ -41,7 +41,6 @@ int malloc_my_map(sys_t *sys)
 	return (0);
 }
 
-
 int init(sys_t *sys)
 {
 	if (malloc_my_map(sys) == 84)
