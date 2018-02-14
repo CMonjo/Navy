@@ -12,8 +12,11 @@ CFLAGS	=	-Wall -Wextra -W -Werror -I include/
 LIB	=	-L lib/my -lmy
 
 SRC	=	src/main.c \
-		src/game_handling/init.c \
-		src/display/display_rules.c
+		src/game_loop/main_loop.c \
+		src/tools/display.c \
+		src/tools/init.c \
+		src/map_handling/open_and_fill.c \
+		src/tools/convert_alpha_in_int.c
 
 OBJ	=	$(SRC:.c=.o)
 

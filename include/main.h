@@ -21,12 +21,19 @@
 	// STRUCT
 
 	typedef struct sys_s {
-		char **my_map;
-		char **ennemy_map;
+		char *my_map;
+		char *ennemy_map;
+		char *coordone_my_ship;
+		char *coordone_ennemy_ship;
 	} sys_t;
 
 	// PROTOTYPES
 
+	int convert_letter(char letter);
+	void map_fill(sys_t *sys);
+	void display_maps(sys_t *sys);
+	void game_loop(sys_t *sys);
+	int open_pos(sys_t *sys, char *pos1, char *pos2);
 	void display_rules();
 	int init(sys_t *sys);
 	int malloc_my_map(sys_t *sys);
