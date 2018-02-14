@@ -12,7 +12,7 @@ void print_my_map(sys_t *sys, int i)
 	int a = i * 14 - 14 + (1 * i - 1);
 	int j = i * 15;
 
-	for(; a < j; a++)
+	for (; a < j; a++)
 	{
 		my_putchar(sys->my_map[a]);
 	}
@@ -23,7 +23,7 @@ void print_ennemy_map(sys_t *sys, int i)
 {
 	int a = i * 14 - 14 + (1 * i - 1);
 	int j = i * 15;
-	for(; a < j; a++)
+	for (;a < j; a++)
 	{
 		my_putchar(sys->ennemy_map[a]);
 	}

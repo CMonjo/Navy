@@ -16,9 +16,8 @@ int open_pos(sys_t *sys, char *pos1, char *pos2)
 	int rt2 = read(fd2, sys->coordone_ennemy_ship, 35);
 	close(fd2);
 
-	if (rt1 < 0 || rt2 < 0) {
+	if (rt1 < 0 || rt2 < 0)
 		return (84);
-	}
 	return (0);
 }
 
