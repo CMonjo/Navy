@@ -60,6 +60,13 @@ char *rempl(char *new_str, char *temp, int a, int rd)
 	return (new_str);
 }
 
+void ft_free(char *new_str, char *temp, char *buffer)
+{
+	free(new_str);
+	free(temp);
+	free(buffer);
+}
+
 char *get_next_line(int fd)
 {
 	char buffer[READ_SIZE + 1];
@@ -81,7 +88,7 @@ char *get_next_line(int fd)
 		}
 	}
 	for (int i = 0; i == 0; i++, verifkey(3), key = init_key(key));
-	for (; key == 5; free(new_str), free(temp), free(buffer))
+	for (; key == 5 && new_str[0] == '\0'; ft_free(new_str, temp, buffer))
 		return (NULL);
 	return (new_str);
 }

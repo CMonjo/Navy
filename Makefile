@@ -16,7 +16,8 @@ SRC	=	src/main.c \
 		src/tools/display.c \
 		src/tools/init.c \
 		src/map_handling/open_and_fill.c \
-		src/tools/convert_alpha_in_int.c
+		src/tools/convert_alpha_in_int.c \
+		src/map_handling/verif_map.c
 
 OBJ	=	$(SRC:.c=.o)
 

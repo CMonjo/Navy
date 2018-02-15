@@ -29,6 +29,7 @@
 
 	// PROTOTYPES
 
+	int verif_position(sys_t *sys);
 	int convert_letter(char letter);
 	void map_fill(sys_t *sys);
 	void display_maps(sys_t *sys);
