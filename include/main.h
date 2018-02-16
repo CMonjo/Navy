@@ -25,6 +25,7 @@
 		char *ennemy_map;
 		char *coordone_my_ship;
 		char *coordone_ennemy_ship;
+		int win;
 	} sys_t;
 
 	// PROTOTYPES
