@@ -12,23 +12,78 @@
 //
 // }
 
+void handler(int sigal, siginfo_t *info, void *ptr)
+{
+	(void)ptr;
+	sig.pid = info->si_pid;
+	sig.sig1 += (sigal == 10) ? 1 : 0;
+	sig.sig2 += (sigal == 12) ? 1 : 0;
+}
+
+void connection_second_player(char **av)
+{
+	sig.pid =  my_getnbr(av[1]);
+	usleep(10000);
+	kill(sig.pid, 12);
+	usleep(10000);
+	my_putstr("\nsuccessfully connected\n\n");
+}
+
+void connection_first_player()
+{
+	my_putstr("\nwaiting for enemy connection...\n\n");
+	pause();
+	my_putstr("enemy connected\n\n");
+}
+
+int connection(sys_t *sys, int ac, char **av)
+{
+	my_putstr("my_pid:\t");
+	my_put_nbr(getpid());
+	if (ac == 2) {
+		connection_first_player();
+		if (open_pos1(sys, av[1]) == 84)
+			return (84);
+	} else {
+		connection_second_player(av);
+		if (open_pos2(sys, av[2]) == 84)
+			return (84);
+	}
+	return (0);
+}
+
+void set_connection(int pid)
+{
+	struct sigaction action;
+
+	action.sa_flags = SA_SIGINFO;
+	action.sa_sigaction = &handler;
+	sigaction(pid, &action, NULL);
+}
+
 int main(int ac, char **av)
 {
 	int winner = 0;
 	sys_t *sys = malloc(sizeof(sys_t));
 
-	if (av[1] != NULL && my_strlen(av[1]) == 2 && av[1][0]
-	== '-' && av[1][1] == 'h') {
+	if (av[1] != NULL && my_strlen(av[1]) == 2 && av[1][0] == '-' && av[1][1] == 'h') {
 		display_rules();
 		return (0);
 	}
-	else if (ac != 1 || ac != 2 ||init(sys) == 84)
+	set_connection(10);
+	set_connection(12);
+	if ((ac != 2 && ac != 3) || init(sys) == 84)
 		return (84);
-	else if (open_pos(sys, av[1], av[2]) == 84)
+	//ATTENTION SETPOSITION CHECK AUSSI LA VERIF DES MAPS
+	//CEPENDANT CE N'EST PAS ENCORE FONCTIONNEL
+	if (set_position(sys, ac, av) == 84)
+		return (84);
+	if (connection(sys, ac, av) == 84)
 		return (84);
 	map_fill(sys);
 	game_loop(sys);
 	winner = sys->win;
+	winner = 0;
 	//free_system(sys);
 	return (winner);
 }

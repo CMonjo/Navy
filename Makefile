@@ -7,7 +7,7 @@
 
 CC	=	gcc
 
-CFLAGS	=	-Wall -Wextra -W -Werror -I include/
+CFLAGS	=	-Wall -Wextra -W -I include/
 
 LIB	=	-L lib/my -lmy
 

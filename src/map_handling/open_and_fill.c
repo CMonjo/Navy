@@ -7,17 +7,43 @@
 
 #include "main.h"
 
-int open_pos(sys_t *sys, char *pos1, char *pos2)
+int open_pos2(sys_t *sys, char *pos2)
 {
-	int fd1 = open(pos1, O_RDONLY);
-	int rt1 = read(fd1, sys->coordone_my_ship, 35);
-	close(fd1);
-	int fd2 = open(pos2, O_RDONLY);
-	int rt2 = read(fd2, sys->coordone_ennemy_ship, 35);
-	close(fd2);
+	int fd_pos2 = open(pos2, O_RDONLY);
+	int rd_pos2 = 0;
 
-	if (rt1 < 0 || rt2 < 0 || verif_position(sys) == 84)
+	if (fd_pos2 < 0)
 		return (84);
+	rd_pos2 = read(fd_pos2, sys->coordone_ennemy_ship, 35);
+	close(fd_pos2);
+	if (rd_pos2 < 0)
+		return (84);
+	return (0);
+}
+
+int open_pos1(sys_t *sys, char *pos1)
+{
+	int fd_pos1 = open(pos1, O_RDONLY);
+	int rd_pos1 = 0;
+
+	if (fd_pos1 < 0)
+		return (84);
+	rd_pos1 = read(fd_pos1, sys->coordone_my_ship, 35);
+	close(fd_pos1);
+	if (rd_pos1 < 0)
+		return (84);
+	return (0);
+}
+
+int set_position(sys_t *sys, int ac, char **av)
+{
+	if (ac == 2) {
+		if (open_pos1(sys, av[1]) == 84 || verif_pos1(sys) == 84)
+			return (84);
+	} else {
+		if (open_pos2(sys, av[2]) == 84 || verif_pos2(sys) == 84)
+			return (84);
+	}
 	return (0);
 }
 

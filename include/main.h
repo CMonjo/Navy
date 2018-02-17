@@ -17,6 +17,7 @@
 	#include <math.h>
 	#include <fcntl.h>
 	#include <time.h>
+	#include <signal.h>
 
 	// STRUCT
 
@@ -28,14 +29,25 @@
 		int win;
 	} sys_t;
 
+	typedef struct signal_s {
+		int pid;
+		int sig1;
+		int sig2;
+	} signal_t;
+
+	signal_t sig;
+
 	// PROTOTYPES
 
-	int verif_position(sys_t *sys);
+	int verif_pos1(sys_t *sys);
+	int verif_pos2(sys_t *sys);
 	int convert_letter(char letter);
+	int set_position(sys_t *sys, int ac, char **av);
 	void map_fill(sys_t *sys);
 	void display_maps(sys_t *sys);
 	void game_loop(sys_t *sys);
-	int open_pos(sys_t *sys, char *pos1, char *pos2);
+	int open_pos1();
+	int open_pos2();
 	void display_rules();
 	int init(sys_t *sys);
 	int malloc_my_map(sys_t *sys);
