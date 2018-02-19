@@ -36,20 +36,14 @@ void connection_first_player()
 	my_putstr("enemy connected\n\n");
 }
 
-int connection(sys_t *sys, int ac, char **av)
+void connection(int ac, char **av)
 {
 	my_putstr("my_pid:\t");
 	my_put_nbr(getpid());
-	if (ac == 2) {
+	if (ac == 2)
 		connection_first_player();
-		if (open_pos1(sys, av[1]) == 84)
-			return (84);
-	} else {
+	else
 		connection_second_player(av);
-		if (open_pos2(sys, av[2]) == 84)
-			return (84);
-	}
-	return (0);
 }
 
 void set_connection(int pid)
@@ -78,10 +72,10 @@ int main(int ac, char **av)
 	//CEPENDANT CE N'EST PAS ENCORE FONCTIONNEL
 	if (set_position(sys, ac, av) == 84)
 		return (84);
-	if (connection(sys, ac, av) == 84)
-		return (84);
+	connection(ac, av);
 	map_fill(sys);
-	game_loop(sys);
+	if (game_loop(sys, ac) == 84)
+		return (84);
 	winner = sys->win;
 	winner = 0;
 	//free_system(sys);

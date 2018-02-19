@@ -27,6 +27,8 @@
 		char *coordone_my_ship;
 		char *coordone_ennemy_ship;
 		int win;
+		int pos;
+		int hit;
 	} sys_t;
 
 	typedef struct signal_s {
@@ -45,7 +47,7 @@
 	int set_position(sys_t *sys, int ac, char **av);
 	void map_fill(sys_t *sys);
 	void display_maps(sys_t *sys);
-	void game_loop(sys_t *sys);
+	int game_loop();
 	int open_pos1();
 	int open_pos2();
 	void display_rules();

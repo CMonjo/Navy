@@ -10,21 +10,21 @@
 int convert_letter(char letter)
 {
 	switch (letter) {
-	case 'A' :
+	case 'A':
 		return (0);
-	case 'B' :
+	case 'B':
 		return (1);
-	case 'C' :
+	case 'C':
 		return (2);
-	case 'D' :
+	case 'D':
 		return (3);
-	case 'E' :
+	case 'E':
 		return (4);
-	case 'F' :
+	case 'F':
 		return (5);
-	case 'G' :
+	case 'G':
 		return (6);
-	case 'H' :
+	case 'H':
 		return (7);
 	}
 	return (8);
