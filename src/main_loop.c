@@ -69,11 +69,11 @@ void turn_defence(sys_t *sys)
 	my_putchar(pos / 8 + 49);
 	usleep(30000);
 	if (sys->my_map[pos] != '.') {
-		my_putstr(": hit2\n");
+		my_putstr(": hit\n");
 		kill(sig.pid, 10);
 		sys->my_map[pos] = 'x';
 	} else {
-		my_putstr(": missed2\n");
+		my_putstr(": missed\n");
 		kill(sig.pid, 12);
 		sys->my_map[pos] = 'o';
 	}
