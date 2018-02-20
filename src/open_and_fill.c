@@ -49,20 +49,19 @@ int set_position(sys_t *sys, int ac, char **av)
 
 void placement_ship_in_map(sys_t *sys, int i)
 {
-	printf("%s\n i = %d", sys->coordone_my_ship, i);
 	static int nb = 2;
 
-	int x1 = convert_letter(sys->coordone_my_ship[i]) * 2;
+	int x1 = convert_letter(sys->coordone_my_ship[i]);
 	int y1 = sys->coordone_my_ship[i + 1] - '0' - 1;
-	int x2 = convert_letter(sys->coordone_my_ship[i + 3]) * 2;
+	int x2 = convert_letter(sys->coordone_my_ship[i + 3]);
 	int y2 = sys->coordone_my_ship[i + 4] - '0' - 1;
 
-	sys->my_map[(y1 * 7) + x1] = nb + 48;
-	sys->my_map[y2 * 7 + x2] = nb + 48;
-	for (;nb > 2 && x1 < x2; x1 += 2)
-		sys->my_map[(y1 * 7) + x1] = nb + 48;
+	sys->my_map[(y1 * 8) + x1] = nb + 48;
+	sys->my_map[y2 * 8 + x2] = nb + 48;
+	for (;nb > 2 && x1 < x2; x1 += 1)
+		sys->my_map[(y1 * 8) + x1] = nb + 48;
 	for (;nb > 2 && y1 < y2; y1 += 1)
-		sys->my_map[(y1 * 7) + x1] = nb + 48;
+		sys->my_map[(y1 * 8) + x1] = nb + 48;
 	nb += 1;
 }
 
@@ -70,66 +69,10 @@ void map_fill(sys_t *sys)
 {
 	int i = 0;
 
-	for (i = 0; i != 64; i++) {
+	for (i = 0; i < 64; i++) {
 		sys->my_map[i] = '.';
 		sys->ennemy_map[i] = '.';
 	}
-	printf("map\n%s\n", sys->my_map);
 	for (int i = 2; i < 30; i += 8)
 		placement_ship_in_map(sys, i);
-	placement_ship_in_map(sys, i);
-	printf("map\n%s\n", sys->my_map);
 }
-
-// void placement_ship_in_map(sys_t *sys, int i)
-// {
-// 	static int nb = 2;
-//
-// 	int x1 = convert_letter(sys->coordone_my_ship[i]) * 2;
-// 	int y1 = sys->coordone_my_ship[i + 1] - '0' - 1;
-// 	int x2 = convert_letter(sys->coordone_my_ship[i + 3]) * 2;
-// 	int y2 = sys->coordone_my_ship[i + 4] - '0' - 1;
-//
-// 	sys->my_map[(y1 * 15) + x1] = nb + 48;
-// 	sys->my_map[y2 * 15 + x2] = nb + 48;
-// 	for (;nb > 2 && x1 < x2; x1 += 2)
-// 		sys->my_map[(y1 * 15) + x1] = nb + 48;
-// 	for (;nb > 2 && y1 < y2; y1 += 1)
-// 		sys->my_map[(y1 * 15) + x1] = nb + 48;
-// 	nb += 1;
-// }
-//
-// void placement_ennemy_ship_in_map(sys_t *sys, int i)
-// {
-// 	static int nb = 2;
-//
-// 	int x1 = convert_letter(sys->coordone_ennemy_ship[i]) * 2;
-// 	int y1 = sys->coordone_ennemy_ship[i + 1] - '0' - 1;
-// 	int x2 = convert_letter(sys->coordone_ennemy_ship[i + 3]) * 2;
-// 	int y2 = sys->coordone_ennemy_ship[i + 4] - '0' - 1;
-//
-// 	sys->ennemy_map[(y1 * 15) + x1] = nb + 48;
-// 	sys->ennemy_map[y2 * 15 + x2] = nb + 48;
-// 	for (;nb > 2 && x1 < x2; x1 += 2)
-// 		sys->ennemy_map[(y1 * 15) + x1] = nb + 48;
-// 	for (;nb > 2 && y1 < y2; y1 += 1)
-// 		sys->ennemy_map[(y1 * 15) + x1] = nb + 48;
-// 	nb += 1;
-// }
-//
-// void map_fill(sys_t *sys)
-// {
-// 	for (int i = 0; i != 120; i += 1) {
-// 		if (i == 0 || sys->my_map[i - 1] == ' ' || i % 15 == 0) {
-// 			sys->my_map[i] = '.';
-// 			sys->ennemy_map[i] = '.';
-// 		} else {
-// 			sys->my_map[i] = ' ';
-// 			sys->ennemy_map[i] = ' ';
-// 		}
-// 	}
-	// for (int i = 2; i < 30; i += 8)
-	// 	placement_ship_in_map(sys, i);
-// 	for (int i = 2; i < 30; i += 8)
-// 		placement_ennemy_ship_in_map(sys, i);
-// }
