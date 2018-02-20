@@ -7,9 +7,9 @@
 
 #ifndef MAIN_H_
 	#define MAIN_H_
+	#define READ_SIZE (1)
 
 	// INCLUDES
-
 	#include <stdlib.h>
 	#include <stdio.h>
 	#include <unistd.h>
@@ -17,10 +17,12 @@
 	#include <math.h>
 	#include <fcntl.h>
 	#include <time.h>
+	#include <string.h>
 	#include <signal.h>
+	#include <sys/types.h>
+	#include <sys/stat.h>
 
 	// STRUCT
-
 	typedef struct sys_s {
 		char *my_map;
 		char *ennemy_map;
@@ -40,7 +42,6 @@
 	signal_t sig;
 
 	// PROTOTYPES
-
 	int verif_pos1(sys_t *sys);
 	int verif_pos2(sys_t *sys);
 	int convert_letter(char letter);
@@ -66,5 +67,9 @@
 	char *my_revstr(char *str);
 	int my_strcmp(char const *s1, char const *s2);
 	char *my_strcat(char *dest, char const *src);
-
+	char *get_next_line(int fd);
+	void reset_sig(void);
+	int hit_enemy(void);
+	int check_attack(void);
+	void send_attack(int pos);
 #endif

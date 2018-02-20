@@ -1,16 +1,11 @@
 /*
 ** EPITECH PROJECT, 2017
-** getnexxtline.c
+** GetNextLine
 ** File description:
 ** .c
 */
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include "get_next_line.h"
+
+#include "main.h"
 
 int init_key(int key)
 {

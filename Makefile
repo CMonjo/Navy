@@ -13,6 +13,7 @@ LIB	=	-L lib/my -lmy
 
 SRC	=	src/main.c \
 		src/main_loop.c \
+		src/game_connect.c \
 		src/display.c \
 		src/init.c \
 		src/open_and_fill.c \
