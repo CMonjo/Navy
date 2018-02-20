@@ -47,14 +47,13 @@ int turn_attack(sys_t *sys)
 	send_attack(sys->pos);
 	my_putchar(sys->pos % 8 + 65);
 	my_putchar(sys->pos / 8 + 49);
-	//sys->pos = sys->pos * 2;
 	hit = hit_enemy();
 	if (hit == 1) {
-		my_putstr(": hit\n\n");
+		my_putstr(": hit1\n");
 		sys->hit++;
 		sys->ennemy_map[sys->pos] = 'x';
 	} else {
-		my_putstr(": missed\n\n");
+		my_putstr(": missed1\n");
 		sys->ennemy_map[sys->pos] = 'o';
 	}
 	return (0);
@@ -69,13 +68,12 @@ void turn_defence(sys_t *sys)
 	my_putchar(pos % 8 + 65);
 	my_putchar(pos / 8 + 49);
 	usleep(30000);
-	//pos = pos * 2;
 	if (sys->my_map[pos] != '.') {
-		my_putstr(": hit\n\n");
+		my_putstr(": hit2\n");
 		kill(sig.pid, 10);
 		sys->my_map[pos] = 'x';
 	} else {
-		my_putstr(": missed\n\n");
+		my_putstr(": missed2\n");
 		kill(sig.pid, 12);
 		sys->my_map[pos] = 'o';
 	}

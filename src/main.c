@@ -26,14 +26,14 @@ void connection_second_player(char **av)
 	usleep(10000);
 	kill(sig.pid, 12);
 	usleep(10000);
-	my_putstr("\nsuccessfully connected\n\n");
+	my_putstr("\nsuccessfully connected\n");
 }
 
 void connection_first_player()
 {
 	my_putstr("\nwaiting for enemy connection...\n\n");
 	pause();
-	my_putstr("enemy connected\n\n");
+	my_putstr("enemy connected\n");
 }
 
 void connection(int ac, char **av)

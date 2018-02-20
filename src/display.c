@@ -30,7 +30,7 @@ void print_ennemy_map(sys_t *sys, int i)
 
 void display_maps(sys_t *sys)
 {
-	my_putstr("my positions:\n");
+	my_putstr("\nmy positions:\n");
 	my_putstr(" |A B C D E F G H\n");
 	my_putstr("-+---------------\n");
 	for (int i = 1; i != 9; i++) {
