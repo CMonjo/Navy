@@ -73,7 +73,8 @@ int main(int ac, char **av)
 	if (set_position(sys, ac, av) == 84)
 		return (84);
 	connection(ac, av);
-	map_fill(sys);
+	if (map_fill(sys) == 84)
+		return (84);
 	if (game_loop(sys, ac) == 84)
 		return (84);
 	winner = sys->win;
