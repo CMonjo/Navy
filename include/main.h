@@ -43,11 +43,12 @@
 	signal_t sig;
 
 	// PROTOTYPES
+	int verif_number_and_point(sys_t *sys);
 	int verif_pos1(sys_t *sys);
 	int verif_pos2(sys_t *sys);
 	int convert_letter(char letter);
 	int set_position(sys_t *sys, int ac, char **av);
-	void map_fill(sys_t *sys);
+	int map_fill(sys_t *sys);
 	void display_maps(sys_t *sys);
 	int game_loop();
 	int open_pos1();
