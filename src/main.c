@@ -55,6 +55,15 @@ void set_connection(int pid)
 	sigaction(pid, &action, NULL);
 }
 
+int return_winner(sys_t *sys)
+{
+	if (sys->hit == 14)
+		return (0);
+	else
+		return (1);
+	return (0);
+}
+
 int main(int ac, char **av)
 {
 	int winner = 0;
@@ -76,8 +85,7 @@ int main(int ac, char **av)
 	map_fill(sys);
 	if (game_loop(sys, ac) == 84)
 		return (84);
-	winner = sys->win;
-	winner = 0;
+	winner = return_winner(sys);
 	//free_system(sys);
 	return (winner);
 }

@@ -31,6 +31,7 @@
 		int win;
 		int pos;
 		int hit;
+		int en_hit;
 	} sys_t;
 
 	typedef struct signal_s {

@@ -17,6 +17,9 @@ int init(sys_t *sys)
 	sig.pid = 0;
 	sig.sig1 = 0;
 	sig.sig2 = 0;
+	sys->win = 2;
+	sys->hit = 0;
+	sys->en_hit = 0;
 	if (!sys->my_map || !sys->ennemy_map || !sys->coordone_ennemy_ship ||
 	!sys->coordone_my_ship)
 		return (84);

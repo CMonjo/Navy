@@ -9,11 +9,8 @@
 
 int input_error(char *str)
 {
-	if (my_strlen(str) != 2)
-		return (84);
-	if (str[0] > 'H' || str[0] < 'A')
-		return (84);
-	if (str[1] > '9' || str[1] < '1')
+	if (my_strlen(str) != 2 || (str[0] > 'H' ||
+	str[0] < 'A') || (str[1] > '9' || str[1] < '1'))
 		return (84);
 	return (0);
 }
@@ -42,18 +39,17 @@ int turn_attack(sys_t *sys)
 {
 	int hit = 1;
 
-	sys->pos = 0;
 	sys->pos = check_input();
 	send_attack(sys->pos);
 	my_putchar(sys->pos % 8 + 65);
 	my_putchar(sys->pos / 8 + 49);
 	hit = hit_enemy();
 	if (hit == 1) {
-		my_putstr(": hit1\n");
+		my_putstr(": hit\n");
 		sys->hit++;
 		sys->ennemy_map[sys->pos] = 'x';
 	} else {
-		my_putstr(": missed1\n");
+		my_putstr(": missed\n");
 		sys->ennemy_map[sys->pos] = 'o';
 	}
 	return (0);
@@ -68,9 +64,10 @@ void turn_defence(sys_t *sys)
 	my_putchar(pos % 8 + 65);
 	my_putchar(pos / 8 + 49);
 	usleep(30000);
-	if (sys->my_map[pos] != '.') {
+	if (sys->my_map[pos] != '.' && sys->my_map[pos] != 'o') {
 		my_putstr(": hit\n");
 		kill(sig.pid, 10);
+		sys->en_hit++;
 		sys->my_map[pos] = 'x';
 	} else {
 		my_putstr(": missed\n");
@@ -80,21 +77,64 @@ void turn_defence(sys_t *sys)
 	usleep(1000);
 }
 
+int check_winner(sys_t *sys, int ac)
+{
+	printf("win %d\n", sys->win);
+	printf("hit: %d, enemy: %d\n", sys->hit, sys->en_hit);
+	if (sys->hit == 14 && ac == 3) {
+		my_putstr("I won\n");
+		sys->win = 0;
+	}
+	else if (sys->hit == 14 && ac == 2) {
+		my_putstr("I won\n");
+		sys->win = 0;
+	}
+	else if (sys->en_hit == 14 && ac == 3) {
+		my_putstr("Enemy won\n");
+		sys->win = 1;
+	}
+	else if (sys->en_hit == 14 && ac == 2) {
+		my_putstr("Enemy won\n");
+		sys->win = 1;
+	}
+	printf("win = %d\n", sys->win);
+	if (sys->win == 0 || sys->win == 1)
+		return (1);
+	return (0);
+}
+
 int game_loop(sys_t *sys, int ac)
 {
-	sys->win = 2;
 	sig.sig1 = 0;
 	sig.sig2 = 0;
+	sys->hit = 13;
+	sys->en_hit = 13;
 	while (sys->win == 2) {
 		display_maps(sys);
 		if (ac == 3) {
 			turn_defence(sys);
+			if (check_winner(sys, ac) == 1) {
+				printf("??\n");
+				break;
+			}
 			if (turn_attack(sys) == 84)
 				return (84);
+			if (check_winner(sys, ac) == 1) {
+				printf("??\n");
+				break;
+			}
 		} else {
 			if (turn_attack(sys) == 84)
 				return (84);
+			if (check_winner(sys, ac) == 1) {
+				printf("??\n");
+				break;
+			}
 			turn_defence(sys);
+			if (check_winner(sys, ac) == 1) {
+				printf("??\n");
+				break;
+			}
 		}
 	}
 	return (0);
