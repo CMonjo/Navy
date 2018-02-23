@@ -11,13 +11,15 @@ CFLAGS	=	-Wall -Wextra -W -I include/
 
 LIB	=	-L lib/my -lmy
 
-SRC	=	src/main.c \
-		src/main_loop.c \
-		src/game_connect.c \
-		src/display.c \
-		src/init.c \
-		src/open_and_fill.c \
-		src/convert_alpha_in_int.c \
+SRC	=	src/main.c			\
+		src/game_loop.c			\
+		src/game_connect.c 		\
+		src/display.c			\
+		src/init.c			\
+		src/open_and_fill.c		\
+		src/convert_alpha_in_int.c	\
+		src/fight.c			\
+		src/signal.c			\
 		src/verif_map.c
 
 OBJ	=	$(SRC:.c=.o)

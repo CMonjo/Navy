@@ -9,8 +9,8 @@
 
 int init(sys_t *sys)
 {
-	sys->my_map = malloc(sizeof(char) * 500);
-	sys->ennemy_map = malloc(sizeof(char) * 500);
+	sys->my_map = malloc(sizeof(char) * 70);
+	sys->ennemy_map = malloc(sizeof(char) * 70);
 	sys->file = malloc(sizeof(char) * 35);
 	sig.pid = 0;
 	sig.sig1 = 0;

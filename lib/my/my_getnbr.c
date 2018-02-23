@@ -5,10 +5,10 @@
 ** atoi
 */
 
-int		my_getnbr(char const *str)
+int my_getnbr(char const *str)
 {
-	long	number = 0;
-	int		print_sign = 0;
+	long number = 0;
+	int print_sign = 0;
 
 	if (!str)
 		return (0);

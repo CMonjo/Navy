@@ -55,17 +55,15 @@ int placement_ship_in_map(sys_t *sys, int i)
 	int x2 = convert_letter(sys->file[i + 3]);
 	int y2 = sys->file[i + 4] - '0' - 1;
 
-	if (sys->my_map[(y1 * 8) + x1] != '.' || sys->my_map[y2 * 8 + x2] != '.') {
+	if (sys->my_map[(y1 * 8) + x1] != '.' ||
+	sys->my_map[y2 * 8 + x2] != '.')
 		return (84);
-	}
 	sys->my_map[(y1 * 8) + x1] = nb + 48;
 	sys->my_map[y2 * 8 + x2] = nb + 48;
-	for (;nb > 2 && x1 < x2; x1 += 1) {
+	for (;nb > 2 && x1 < x2; x1 += 1)
 		sys->my_map[(y1 * 8) + x1] = nb + 48;
-	}
-	for (;nb > 2 && y1 < y2; y1 += 1) {
+	for (;nb > 2 && y1 < y2; y1 += 1)
 		sys->my_map[(y1 * 8) + x1] = nb + 48;
-	}
 	nb += 1;
 	return (0);
 }
