@@ -9,19 +9,17 @@
 
 int init(sys_t *sys)
 {
-	//taille a optimiser
 	sys->my_map = malloc(sizeof(char) * 500);
 	sys->ennemy_map = malloc(sizeof(char) * 500);
-	sys->coordone_ennemy_ship = malloc(sizeof(char) * 35);
-	sys->coordone_my_ship = malloc(sizeof(char) * 35);
+	sys->file = malloc(sizeof(char) * 35);
 	sig.pid = 0;
 	sig.sig1 = 0;
 	sig.sig2 = 0;
 	sys->win = 2;
 	sys->hit = 0;
 	sys->en_hit = 0;
-	if (!sys->my_map || !sys->ennemy_map || !sys->coordone_ennemy_ship ||
-	!sys->coordone_my_ship)
+	sys->freturn = 0;
+	if (!sys->my_map || !sys->ennemy_map || !sys->file)
 		return (84);
 	return (0);
 }

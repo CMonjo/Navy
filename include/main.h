@@ -26,12 +26,13 @@
 	typedef struct sys_s {
 		char *my_map;
 		char *ennemy_map;
-		char *coordone_my_ship;
-		char *coordone_ennemy_ship;
+		char *file;
 		int win;
 		int pos;
 		int hit;
+		int freturn;
 		int en_hit;
+		int get_hit;
 	} sys_t;
 
 	typedef struct signal_s {

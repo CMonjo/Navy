@@ -14,7 +14,7 @@ int open_pos2(sys_t *sys, char *pos2)
 
 	if (fd_pos2 < 0)
 		return (84);
-	rd_pos2 = read(fd_pos2, sys->coordone_my_ship, 35);
+	rd_pos2 = read(fd_pos2, sys->file, 35);
 	close(fd_pos2);
 	if (rd_pos2 < 0)
 		return (84);
@@ -28,7 +28,7 @@ int open_pos1(sys_t *sys, char *pos1)
 
 	if (fd_pos1 < 0)
 		return (84);
-	rd_pos1 = read(fd_pos1, sys->coordone_my_ship, 35);
+	rd_pos1 = read(fd_pos1, sys->file, 35);
 	close(fd_pos1);
 	if (rd_pos1 < 0)
 		return (84);
@@ -50,10 +50,10 @@ int set_position(sys_t *sys, int ac, char **av)
 int placement_ship_in_map(sys_t *sys, int i)
 {
 	static int nb = 2;
-	int x1 = convert_letter(sys->coordone_my_ship[i]);
-	int y1 = sys->coordone_my_ship[i + 1] - '0' - 1;
-	int x2 = convert_letter(sys->coordone_my_ship[i + 3]);
-	int y2 = sys->coordone_my_ship[i + 4] - '0' - 1;
+	int x1 = convert_letter(sys->file[i]);
+	int y1 = sys->file[i + 1] - '0' - 1;
+	int x2 = convert_letter(sys->file[i + 3]);
+	int y2 = sys->file[i + 4] - '0' - 1;
 
 	if (sys->my_map[(y1 * 8) + x1] != '.' || sys->my_map[y2 * 8 + x2] != '.') {
 		return (84);
@@ -79,9 +79,7 @@ int map_fill(sys_t *sys)
 		sys->my_map[i] = '.';
 		sys->ennemy_map[i] = '.';
 	}
-	for (int i = 2; i < 30 && r == 0; i += 8) {
+	for (int i = 2; i < 30 && r == 0; i += 8)
 		r = placement_ship_in_map(sys, i);
-		printf("r = %d\n", r);
-	}
 	return (r);
 }

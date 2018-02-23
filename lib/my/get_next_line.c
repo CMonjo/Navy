@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2017
-** GetNextLine
+** Project GetNextLine
 ** File description:
-** .c
+** Main file
 */
 
 #include "main.h"
@@ -11,6 +11,7 @@ int init_key(int key)
 {
 	key == 1 ? key = 0 : 0;
 	key == 2 ? key = 3 : 0;
+
 	return (key);
 }
 
@@ -55,13 +56,6 @@ char *rempl(char *new_str, char *temp, int a, int rd)
 	return (new_str);
 }
 
-void ft_free(char *new_str, char *temp, char *buffer)
-{
-	free(new_str);
-	free(temp);
-	free(buffer);
-}
-
 char *get_next_line(int fd)
 {
 	char buffer[READ_SIZE + 1];
@@ -70,20 +64,18 @@ char *get_next_line(int fd)
 	static int key = 0;
 	static int j = 0;
 
-	if (new_str) {
-		for (int rd = 0; key == 0 || key == 3; temp[j] = '\0',
-		new_str = rempl(new_str, temp, 0, rd), key = verifkey(0)) {
-			key == 3 ? new_str = rempl(new_str, temp, 1, rd) : 0;
-			for (; verifkey(0) == 4; key = 3)
-				return (new_str);
-			rd = read(fd, buffer, READ_SIZE);
-			if (rd == -1)
-				return (NULL);
-			for (j = 0; j < rd && rd > 0; temp[j] = buffer[j], j++);
-		}
+	for (int rd = 0; key == 0 || key == 3; temp[j] = '\0',
+	new_str = rempl(new_str, temp, 0, rd), key = verifkey(0)) {
+		key == 3 ? new_str = rempl(new_str, temp, 1, rd) : 0;
+		for (; verifkey(0) == 4; key = 3)
+			return (new_str);
+		rd = read(fd, buffer, READ_SIZE);
+		if (rd == -1)
+			return (NULL);
+		for (j = 0; j < rd && rd > 0; temp[j] = buffer[j], j++);
 	}
 	for (int i = 0; i == 0; i++, verifkey(3), key = init_key(key));
-	for (; key == 5 && new_str[0] == '\0'; ft_free(new_str, temp, buffer))
+	for (; key == 5; free(new_str), free(temp), free(buffer))
 		return (NULL);
 	return (new_str);
 }
