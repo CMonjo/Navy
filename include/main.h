@@ -45,8 +45,7 @@
 
 	// PROTOTYPES
 	int verif_number_and_point(sys_t *sys);
-	int verif_pos1(sys_t *sys);
-	int verif_pos2(sys_t *sys);
+	int verif_pos(sys_t *sys);
 	int convert_letter(char letter);
 	int set_position(sys_t *sys, int ac, char **av);
 	int map_fill(sys_t *sys);

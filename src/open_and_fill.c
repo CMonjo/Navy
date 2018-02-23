@@ -38,10 +38,10 @@ int open_pos1(sys_t *sys, char *pos1)
 int set_position(sys_t *sys, int ac, char **av)
 {
 	if (ac == 2) {
-		if (open_pos1(sys, av[1]) == 84 || verif_pos1(sys) == 84)
+		if (open_pos1(sys, av[1]) == 84 || verif_pos(sys) == 84)
 			return (84);
 	} else {
-		if (open_pos2(sys, av[2]) == 84)
+		if (open_pos2(sys, av[2]) == 84 || verif_pos(sys) == 84)
 			return (84);
 	}
 	return (0);
