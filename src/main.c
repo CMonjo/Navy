@@ -28,9 +28,9 @@ int start_game(sys_t *sys, int ac, char **av)
 {
 	if (set_position(sys, ac, av) == 84)
 		return (84);
-	connection(ac, av);
 	if (map_fill(sys) == 84)
 		return (84);
+	connection(ac, av);
 	if (game_loop(sys, ac) == 84)
 		return (84);
 	return (0);
@@ -38,8 +38,8 @@ int start_game(sys_t *sys, int ac, char **av)
 
 int main(int ac, char **av)
 {
-	int winner = 0;
 	sys_t *sys = malloc(sizeof(sys_t));
+	int winner = 0;
 
 	if (av[1] != NULL && my_strlen(av[1]) == 2
 	&& av[1][0] == '-' && av[1][1] == 'h') {

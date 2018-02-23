@@ -45,8 +45,6 @@ int verif_number_and_point(sys_t *sys)
 
 int verif_pos(sys_t *sys)
 {
-	if (verif_number_and_point(sys) == 84)
-		return (84);
 	int n1[4] = {convert_letter(sys->file[2]),
 		convert_letter(sys->file[5]),
 		sys->file[3] - 47, sys->file[6] - 48};
@@ -60,6 +58,8 @@ int verif_pos(sys_t *sys)
 		convert_letter(sys->file[29]),
 		sys->file[27] - 44, sys->file[30] - 48};
 
+	if (verif_number_and_point(sys) == 84)
+		return (84);
 	if ((n1[0] == n1[1] && n1[2] != n1[3]) || (n2[0] == n2[1] &&
 	n2[2] != n2[3]) || (n3[0] == n3[1] && n3[2] != n3[3])
 	|| (n4[0] == n4[1] && n4[2] != n4[3]))
