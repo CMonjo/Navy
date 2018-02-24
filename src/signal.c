@@ -24,7 +24,7 @@ void connection_second_player(char **av)
 	my_putstr("\nsuccessfully connected\n");
 }
 
-void connection_first_player()
+void connection_first_player(void)
 {
 	my_putstr("\nwaiting for enemy connection...\n\n");
 	pause();

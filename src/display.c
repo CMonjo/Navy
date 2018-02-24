@@ -11,6 +11,7 @@ void print_my_map(sys_t *sys, int i)
 {
 	int a = i * 8 - 8;
 	int j = i * 8;
+
 	for (; a < j; a++) {
 		my_putchar(sys->my_map[a]);
 		my_putchar(' ');
@@ -21,6 +22,7 @@ void print_my_map(sys_t *sys, int i)
 void print_ennemy_map(sys_t *sys, int i)
 {
 	int a = i * 8 - 8;
+
 	for (; a < i * 8; a++) {
 		my_putchar(sys->ennemy_map[a]);
 		my_putchar(' ');
@@ -49,7 +51,7 @@ void display_maps(sys_t *sys)
 	}
 }
 
-void display_rules()
+void display_rules(void)
 {
 	my_putstr("USAGE\n");
 	my_putstr("\t./navy [first_player_pid] navy_positions\n");
