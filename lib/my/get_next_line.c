@@ -11,7 +11,6 @@ int init_key(int key)
 {
 	key == 1 ? key = 0 : 0;
 	key == 2 ? key = 3 : 0;
-
 	return (key);
 }
 
